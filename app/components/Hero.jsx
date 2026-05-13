@@ -446,7 +446,7 @@ export default function Hero() {
             </div>
             <div className="stat-divider" />
             <div className="stat">
-              <span className="stat-num">20+</span>
+              <span className="stat-num">16+</span>
               <span className="stat-label">Clients</span>
             </div>
           </div>
