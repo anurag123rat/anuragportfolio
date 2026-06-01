@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 export default function SarkariBlogPage() {
   const features = [
     { icon: "📝", title: "Daily MCQs", desc: "Har roz practice questions with answers" },
@@ -19,9 +21,47 @@ export default function SarkariBlogPage() {
   const freeTags = ["📚 Study Material", "❓ Daily Questions", "🔔 Exam Notifications", "📋 Revision PDFs", "📅 Current Affairs", "🏆 Result Updates"];
 
   const TG_LINK = "https://t.me/+BoYNpca6uMU5ZmRl";
+  const FB_PIXEL_ID = "1493713422436203";
+
+  const handleTelegramClick = () => {
+  if (typeof window !== "undefined" && window.fbq) {
+    fbq("track", "Lead");
+  }
+};
 
   return (
     <main style={{ fontFamily: "'Hind', sans-serif", background: "#FFF8F0", overflowX: "hidden" }}>
+
+      {/* ✅ FB PIXEL — Next.js way using next/script */}
+      <Script
+        id="fb-pixel"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${FB_PIXEL_ID}');
+            fbq('track', 'PageView');
+          `,
+        }}
+      />
+      {/* noscript fallback */}
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@400;500;600&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,98 +76,45 @@ export default function SarkariBlogPage() {
         .feature-card { transition: transform 0.2s, box-shadow 0.2s; }
         .feature-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(217,43,43,0.15) !important; }
 
-        /* TELEGRAM BUTTON — irresistible */
         .tg-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          background: #fff;
-          color: #0088CC;
-          font-family: 'Baloo 2', cursive;
-          font-size: 1.15rem;
-          font-weight: 800;
-          padding: 16px 36px;
-          border-radius: 50px;
-          text-decoration: none;
-          border: 3px solid #0088CC;
-          position: relative;
-          overflow: hidden;
-          transition: all 0.25s ease;
-          cursor: pointer;
+          display: inline-flex; align-items: center; gap: 12px;
+          background: #fff; color: #0088CC;
+          font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800;
+          padding: 16px 36px; border-radius: 50px; text-decoration: none;
+          border: 3px solid #0088CC; position: relative; overflow: hidden;
+          transition: all 0.25s ease; cursor: pointer;
         }
         .tg-btn::before {
-          content: '';
-          position: absolute;
-          inset: 0;
+          content: ''; position: absolute; inset: 0;
           background: linear-gradient(90deg, transparent 0%, rgba(0,136,204,0.08) 50%, transparent 100%);
-          background-size: 200% 100%;
-          animation: shimmer 2.5s linear infinite;
+          background-size: 200% 100%; animation: shimmer 2.5s linear infinite;
         }
-        .tg-btn:hover {
-          background: #0088CC;
-          color: #fff;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 32px rgba(0,136,204,0.5) !important;
-        }
-        .tg-btn:hover .tg-icon-svg { filter: brightness(0) invert(1); }
+        .tg-btn:hover { background: #0088CC; color: #fff; transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,136,204,0.5) !important; }
 
-        /* Hero CTA — same Telegram style */
         .hero-cta {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          background: #fff;
-          color: #0088CC;
-          font-family: 'Baloo 2', cursive;
-          font-size: 1.15rem;
-          font-weight: 800;
-          padding: 16px 36px;
-          border-radius: 50px;
-          text-decoration: none;
-          border: 3px solid #0088CC;
-          transition: all 0.25s ease;
-          position: relative;
-          overflow: hidden;
+          display: inline-flex; align-items: center; gap: 12px;
+          background: #fff; color: #0088CC;
+          font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800;
+          padding: 16px 36px; border-radius: 50px; text-decoration: none;
+          border: 3px solid #0088CC; transition: all 0.25s ease;
+          position: relative; overflow: hidden;
         }
         .hero-cta::before {
-          content: '';
-          position: absolute;
-          inset: 0;
+          content: ''; position: absolute; inset: 0;
           background: linear-gradient(90deg, transparent 0%, rgba(0,136,204,0.08) 50%, transparent 100%);
-          background-size: 200% 100%;
-          animation: shimmer 2.5s linear infinite;
+          background-size: 200% 100%; animation: shimmer 2.5s linear infinite;
         }
-        .hero-cta:hover {
-          background: #0088CC;
-          color: #fff;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 32px rgba(0,136,204,0.5);
-        }
+        .hero-cta:hover { background: #0088CC; color: #fff; transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,136,204,0.5); }
 
-        /* On red sections — inverted Telegram button */
         .tg-btn-inv {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          background: #0088CC;
-          color: #fff;
-          font-family: 'Baloo 2', cursive;
-          font-size: 1.15rem;
-          font-weight: 800;
-          padding: 16px 36px;
-          border-radius: 50px;
-          text-decoration: none;
-          border: 3px solid #0088CC;
-          box-shadow: 0 4px 24px rgba(0,136,204,0.5);
-          transition: all 0.25s ease;
-          position: relative;
-          overflow: hidden;
+          display: inline-flex; align-items: center; gap: 12px;
+          background: #0088CC; color: #fff;
+          font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800;
+          padding: 16px 36px; border-radius: 50px; text-decoration: none;
+          border: 3px solid #0088CC; box-shadow: 0 4px 24px rgba(0,136,204,0.5);
+          transition: all 0.25s ease; position: relative; overflow: hidden;
         }
-        .tg-btn-inv:hover {
-          background: #006fa8;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 36px rgba(0,136,204,0.7);
-        }
+        .tg-btn-inv:hover { background: #006fa8; transform: translateY(-3px); box-shadow: 0 8px 36px rgba(0,136,204,0.7); }
 
         @media (max-width: 400px) {
           .hero-h1 { font-size: 2rem !important; }
@@ -135,18 +122,13 @@ export default function SarkariBlogPage() {
         }
       `}</style>
 
-      {/* FB PIXEL — paste your pixel ID here */}
-      {/* <script>... your FB pixel code ...</script> */}
-
       {/* HEADER */}
       <header style={{ background: "#D92B2B", padding: "14px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 2px 12px rgba(0,0,0,0.25)" }}>
         <div style={{ fontFamily: "'Baloo 2', cursive", fontSize: "1.6rem", fontWeight: 800, color: "#fff" }}>
           Sarkaari<span style={{ color: "#FFD700" }}>Blog</span>
         </div>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <div style={{ background: "#FFD700", color: "#1A0A0A", fontSize: "0.7rem", fontWeight: 700, padding: "4px 10px", borderRadius: "20px" }}>
-            🇮🇳 India's #1 Job Portal
-          </div>
+        <div style={{ background: "#FFD700", color: "#1A0A0A", fontSize: "0.7rem", fontWeight: 700, padding: "4px 10px", borderRadius: "20px" }}>
+          🇮🇳 India's #1 Job Portal
         </div>
       </header>
 
@@ -161,18 +143,15 @@ export default function SarkariBlogPage() {
         <p style={{ color: "rgba(255,255,255,0.88)", fontSize: "1.05rem", fontWeight: 500, marginBottom: "28px", lineHeight: 1.5 }}>
           Daily MCQs • Current Affairs • Admit Cards<br />Results • Syllabus — Sab Kuch Free!
         </p>
-
-        {/* TELEGRAM BUTTON — white bg, blue text, irresistible */}
         <div className="tg-pulse" style={{ display: "inline-block", borderRadius: "50px" }}>
-          <a href={TG_LINK} target="_blank" rel="noreferrer" className="hero-cta">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="tg-icon-svg">
+          <a href={TG_LINK} target="_blank" rel="noreferrer" className="hero-cta" onClick={handleTelegramClick}>
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="13" cy="13" r="13" fill="#0088CC"/>
               <path d="M6.5 12.8L18.2 8.3c.5-.2 1 .1.8.9l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1L8.7 15l-2.7-.9c-.6-.2-.6-.6.5-1z" fill="white"/>
             </svg>
             📲 Telegram Join Karo — FREE
           </a>
         </div>
-
         <p style={{ marginTop: "14px", color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>
           ⚡ Already <strong style={{ color: "#FFD700" }}>50,000+</strong> Aspirants Jud Chuke Hain
         </p>
@@ -229,7 +208,7 @@ export default function SarkariBlogPage() {
           ))}
         </div>
         <div className="tg-pulse" style={{ display: "inline-block", borderRadius: "50px" }}>
-          <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn-inv">
+          <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn-inv" onClick={handleTelegramClick}>
             <svg width="24" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="13" cy="13" r="13" fill="white" fillOpacity="0.25"/>
               <path d="M6.5 12.8L18.2 8.3c.5-.2 1 .1.8.9l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1L8.7 15l-2.7-.9c-.6-.2-.6-.6.5-1z" fill="white"/>
@@ -248,7 +227,7 @@ export default function SarkariBlogPage() {
           Hazaron aspirants roz practice kar rahe hain.<br />Tu kab join karega?
         </p>
         <div className="tg-pulse" style={{ display: "inline-block", borderRadius: "50px" }}>
-          <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn-inv">
+          <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn-inv" onClick={handleTelegramClick}>
             <svg width="24" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="13" cy="13" r="13" fill="white" fillOpacity="0.25"/>
               <path d="M6.5 12.8L18.2 8.3c.5-.2 1 .1.8.9l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1L8.7 15l-2.7-.9c-.6-.2-.6-.6.5-1z" fill="white"/>
