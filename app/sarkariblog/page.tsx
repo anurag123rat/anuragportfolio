@@ -1,5 +1,5 @@
 import Script from "next/script";
-
+"use-client"
 export default function SarkariBlogPage() {
   const features = [
     { icon: "📝", title: "Daily MCQs", desc: "Har roz practice questions with answers" },
@@ -24,8 +24,8 @@ export default function SarkariBlogPage() {
   const FB_PIXEL_ID = "1493713422436203";
 
   const handleTelegramClick = () => {
-  if (typeof window !== "undefined" && window.fbq) {
-    fbq("track", "Lead");
+  if (typeof window !== "undefined" && (window as any).fbq) {
+    (window as any).fbq("track", "Lead");
   }
 };
 
