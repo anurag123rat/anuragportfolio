@@ -1,5 +1,5 @@
 
-"use-client"
+"use client"
 export default function SarkariBlogPage() {
   const features = [
     { icon: "📝", title: "Daily MCQs", desc: "Har roz practice questions with answers" },
