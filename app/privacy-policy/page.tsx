@@ -141,9 +141,9 @@ Last Updated: 2025`
       {/* FOOTER */}
       <footer style={{ background: "#1A0A0A", padding: "20px", textAlign: "center", color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
         <p>© 2026 <span style={{ color: "#FFD700" }}>SarkaariBlog</span> — India's Trusted Job Portal</p>
-        <p style={{ marginTop: "8px" }}>
-          <a href="/" style={{ color: "rgba(255,255,255,0.5)", marginRight: "12px", textDecoration: "none" }}>Home</a>
+         <p style={{ marginTop: "8px" }}>
           <a href="/about" style={{ color: "rgba(255,255,255,0.5)", marginRight: "12px", textDecoration: "none" }}>About Us</a>
+          <a href="/privacy-policy" style={{ color: "rgba(255,255,255,0.5)", marginRight: "12px", textDecoration: "none" }}>Privacy Policy</a>
           <a href="/contact-us" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Contact Us</a>
         </p>
       </footer>
