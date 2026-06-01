@@ -18,31 +18,135 @@ export default function SarkariBlogPage() {
 
   const freeTags = ["📚 Study Material", "❓ Daily Questions", "🔔 Exam Notifications", "📋 Revision PDFs", "📅 Current Affairs", "🏆 Result Updates"];
 
-  const TG_LINK = "https://t.me/+BoYNpca6uMU5ZmRl"; 
+  const TG_LINK = "https://t.me/+BoYNpca6uMU5ZmRl";
 
   return (
     <main style={{ fontFamily: "'Hind', sans-serif", background: "#FFF8F0", overflowX: "hidden" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@400;500;600&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+        @keyframes tgPulse { 0%,100%{transform:scale(1); box-shadow:0 4px 24px rgba(0,136,204,0.45)} 50%{transform:scale(1.04); box-shadow:0 8px 36px rgba(0,136,204,0.7)} }
+        @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+
         .pulse { animation: pulse 2.5s infinite; }
+        .tg-pulse { animation: tgPulse 2.2s infinite; }
+
         .feature-card { transition: transform 0.2s, box-shadow 0.2s; }
         .feature-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(217,43,43,0.15) !important; }
-        .tg-btn:hover, .hero-cta:hover { background: #E6C200 !important; transform: translateY(-2px); }
+
+        /* TELEGRAM BUTTON — irresistible */
+        .tg-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          background: #fff;
+          color: #0088CC;
+          font-family: 'Baloo 2', cursive;
+          font-size: 1.15rem;
+          font-weight: 800;
+          padding: 16px 36px;
+          border-radius: 50px;
+          text-decoration: none;
+          border: 3px solid #0088CC;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.25s ease;
+          cursor: pointer;
+        }
+        .tg-btn::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent 0%, rgba(0,136,204,0.08) 50%, transparent 100%);
+          background-size: 200% 100%;
+          animation: shimmer 2.5s linear infinite;
+        }
+        .tg-btn:hover {
+          background: #0088CC;
+          color: #fff;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 32px rgba(0,136,204,0.5) !important;
+        }
+        .tg-btn:hover .tg-icon-svg { filter: brightness(0) invert(1); }
+
+        /* Hero CTA — same Telegram style */
+        .hero-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          background: #fff;
+          color: #0088CC;
+          font-family: 'Baloo 2', cursive;
+          font-size: 1.15rem;
+          font-weight: 800;
+          padding: 16px 36px;
+          border-radius: 50px;
+          text-decoration: none;
+          border: 3px solid #0088CC;
+          transition: all 0.25s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .hero-cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent 0%, rgba(0,136,204,0.08) 50%, transparent 100%);
+          background-size: 200% 100%;
+          animation: shimmer 2.5s linear infinite;
+        }
+        .hero-cta:hover {
+          background: #0088CC;
+          color: #fff;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 32px rgba(0,136,204,0.5);
+        }
+
+        /* On red sections — inverted Telegram button */
+        .tg-btn-inv {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          background: #0088CC;
+          color: #fff;
+          font-family: 'Baloo 2', cursive;
+          font-size: 1.15rem;
+          font-weight: 800;
+          padding: 16px 36px;
+          border-radius: 50px;
+          text-decoration: none;
+          border: 3px solid #0088CC;
+          box-shadow: 0 4px 24px rgba(0,136,204,0.5);
+          transition: all 0.25s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .tg-btn-inv:hover {
+          background: #006fa8;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 36px rgba(0,136,204,0.7);
+        }
+
         @media (max-width: 400px) {
           .hero-h1 { font-size: 2rem !important; }
           .features-grid { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
 
+      {/* FB PIXEL — paste your pixel ID here */}
+      {/* <script>... your FB pixel code ...</script> */}
+
       {/* HEADER */}
       <header style={{ background: "#D92B2B", padding: "14px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 2px 12px rgba(0,0,0,0.25)" }}>
         <div style={{ fontFamily: "'Baloo 2', cursive", fontSize: "1.6rem", fontWeight: 800, color: "#fff" }}>
-          Sarkari<span style={{ color: "#FFD700" }}>Blog</span>
+          Sarkaari<span style={{ color: "#FFD700" }}>Blog</span>
         </div>
-        <div style={{ background: "#FFD700", color: "#1A0A0A", fontSize: "0.7rem", fontWeight: 700, padding: "4px 10px", borderRadius: "20px" }}>
-          🇮🇳 India's #1 Job Portal
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <div style={{ background: "#FFD700", color: "#1A0A0A", fontSize: "0.7rem", fontWeight: 700, padding: "4px 10px", borderRadius: "20px" }}>
+            🇮🇳 India's #1 Job Portal
+          </div>
         </div>
       </header>
 
@@ -57,10 +161,18 @@ export default function SarkariBlogPage() {
         <p style={{ color: "rgba(255,255,255,0.88)", fontSize: "1.05rem", fontWeight: 500, marginBottom: "28px", lineHeight: 1.5 }}>
           Daily MCQs • Current Affairs • Admit Cards<br />Results • Syllabus — Sab Kuch Free!
         </p>
-        <a href={TG_LINK} target="_blank" rel="noreferrer" className="hero-cta"
-          style={{ display: "inline-flex", alignItems: "center", gap: "10px", background: "#FFD700", color: "#1A0A0A", fontFamily: "'Baloo 2', cursive", fontSize: "1.1rem", fontWeight: 800, padding: "14px 32px", borderRadius: "50px", textDecoration: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.3)", transition: "all 0.2s" }}>
-          📲 Telegram Join Karo — FREE
-        </a>
+
+        {/* TELEGRAM BUTTON — white bg, blue text, irresistible */}
+        <div className="tg-pulse" style={{ display: "inline-block", borderRadius: "50px" }}>
+          <a href={TG_LINK} target="_blank" rel="noreferrer" className="hero-cta">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="tg-icon-svg">
+              <circle cx="13" cy="13" r="13" fill="#0088CC"/>
+              <path d="M6.5 12.8L18.2 8.3c.5-.2 1 .1.8.9l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1L8.7 15l-2.7-.9c-.6-.2-.6-.6.5-1z" fill="white"/>
+            </svg>
+            📲 Telegram Join Karo — FREE
+          </a>
+        </div>
+
         <p style={{ marginTop: "14px", color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>
           ⚡ Already <strong style={{ color: "#FFD700" }}>50,000+</strong> Aspirants Jud Chuke Hain
         </p>
@@ -116,24 +228,34 @@ export default function SarkariBlogPage() {
             <span key={tag} style={{ background: "#fff", border: "2px solid #FFD700", color: "#1A0A0A", fontSize: "0.82rem", fontWeight: 600, padding: "6px 14px", borderRadius: "20px" }}>{tag}</span>
           ))}
         </div>
-        <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn pulse"
-          style={{ display: "inline-flex", alignItems: "center", gap: "10px", background: "#FFD700", color: "#1A0A0A", fontFamily: "'Baloo 2', cursive", fontSize: "1.15rem", fontWeight: 800, padding: "16px 36px", borderRadius: "50px", textDecoration: "none", boxShadow: "0 4px 24px rgba(0,0,0,0.2)", transition: "all 0.2s" }}>
-          📲 Abhi Join Karo — Free Hai!
-        </a>
+        <div className="tg-pulse" style={{ display: "inline-block", borderRadius: "50px" }}>
+          <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn-inv">
+            <svg width="24" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="13" cy="13" r="13" fill="white" fillOpacity="0.25"/>
+              <path d="M6.5 12.8L18.2 8.3c.5-.2 1 .1.8.9l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1L8.7 15l-2.7-.9c-.6-.2-.6-.6.5-1z" fill="white"/>
+            </svg>
+            📲 Abhi Join Karo — Free Hai!
+          </a>
+        </div>
       </section>
 
       {/* FINAL CTA */}
       <section style={{ background: "linear-gradient(135deg,#B01E1E,#D92B2B)", padding: "48px 20px", textAlign: "center" }}>
         <h2 style={{ fontFamily: "'Baloo 2', cursive", fontSize: "1.8rem", fontWeight: 800, color: "#fff", marginBottom: "10px", lineHeight: 1.2 }}>
-          🎯 Apna Sarkari Sapna<br />Poora Karo!
+          🎯 Apna Sarkaari Sapna<br />Poora Karo!
         </h2>
         <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", marginBottom: "28px" }}>
           Hazaron aspirants roz practice kar rahe hain.<br />Tu kab join karega?
         </p>
-        <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn pulse"
-          style={{ display: "inline-flex", alignItems: "center", gap: "10px", background: "#FFD700", color: "#1A0A0A", fontFamily: "'Baloo 2', cursive", fontSize: "1.15rem", fontWeight: 800, padding: "16px 36px", borderRadius: "50px", textDecoration: "none", boxShadow: "0 4px 24px rgba(0,0,0,0.3)", transition: "all 0.2s" }}>
-          📲 Telegram Channel Join Karo
-        </a>
+        <div className="tg-pulse" style={{ display: "inline-block", borderRadius: "50px" }}>
+          <a href={TG_LINK} target="_blank" rel="noreferrer" className="tg-btn-inv">
+            <svg width="24" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="13" cy="13" r="13" fill="white" fillOpacity="0.25"/>
+              <path d="M6.5 12.8L18.2 8.3c.5-.2 1 .1.8.9l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-3 5.3-4.8c.2-.2 0-.3-.3-.1L8.7 15l-2.7-.9c-.6-.2-.6-.6.5-1z" fill="white"/>
+            </svg>
+            📲 Telegram Channel Join Karo
+          </a>
+        </div>
         <p style={{ marginTop: "16px", color: "rgba(255,255,255,0.65)", fontSize: "0.8rem" }}>
           🔒 Zero Cost • <strong style={{ color: "#FFD700" }}>Zero Tension</strong> • Sirf Results
         </p>
@@ -141,8 +263,13 @@ export default function SarkariBlogPage() {
 
       {/* FOOTER */}
       <footer style={{ background: "#1A0A0A", padding: "20px", textAlign: "center", color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
-        <p>© 2025 <span style={{ color: "#FFD700" }}>SarkariBlog</span> — India's Trusted Job Portal</p>
+        <p>© 2026 <span style={{ color: "#FFD700" }}>SarkaariBlog</span> — India's Trusted Job Portal</p>
         <p style={{ marginTop: "4px" }}>Results | Admit Card | Job Updates | Syllabus | Study Material</p>
+        <p style={{ marginTop: "8px" }}>
+          <a href="/about" style={{ color: "rgba(255,255,255,0.5)", marginRight: "12px", textDecoration: "none" }}>About Us</a>
+          <a href="/privacy-policy" style={{ color: "rgba(255,255,255,0.5)", marginRight: "12px", textDecoration: "none" }}>Privacy Policy</a>
+          <a href="/contact-us" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Contact Us</a>
+        </p>
       </footer>
     </main>
   );
