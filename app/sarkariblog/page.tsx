@@ -20,7 +20,7 @@ export default function SarkariBlogPage() {
 
   const freeTags = ["📚 Study Material", "❓ Daily Questions", "🔔 Exam Notifications", "📋 Revision PDFs", "📅 Current Affairs", "🏆 Result Updates"];
 
-  const TG_LINK = "https://t.me/+BoYNpca6uMU5ZmRl";
+  const TG_LINK = "https://t.me/sarkari_blog";
   const FB_PIXEL_ID = "1493713422436203";
 
   const handleTelegramClick = () => {
